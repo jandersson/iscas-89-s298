@@ -1,0 +1,7 @@
+digraph s298 {
+	HighwayGreen -> HighwayYellowFarmroadRed;
+	HighwayYellowFarmroadRed -> HighwayRedFarmroadGreen;
+	HighwayRedFarmroadGreen -> HighwayRedFarmroadYellow;
+	HighwayRedFarmroadYellow -> HighwayGreen;
+	HighwayGreen [label="R = 1 0\nY = 0 0\nG = 0 1"];
+}
