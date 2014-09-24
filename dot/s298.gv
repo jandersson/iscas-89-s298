@@ -1,8 +1,18 @@
 digraph s298 {
-	HighwayGreen -> HighwayYellow;
-	HighwayYellow -> HighwayRedFarmroadGreen;
-	HighwayRedFarmroadGreen -> HighwayRedFarmroadYellow;
-	HighwayRedFarmroadYellow -> HighwayGreen;
-	HighwayGreen [label="R = 1 0\nY = 0 0\nG = 0 1"];
-	HighwayYellow [label="R = 1 0\nY = 0 1\nG = 0 0"];
+	HighwayGreen -> HighwayYellow [label="I=000\n140ns"];
+	HighwayGreen -> HighwayYellow [label="I = 010\n120 ns"];
+	HighwayYellow -> FarmroadGreen [label="I=000\n40ns"];
+	HighwayYellow -> FarmroadGreen [label="I=010\n60ns"];
+	HighwayYellow -> Blinking [label="I=100\n40ns"];
+	Blinking -> FarmroadYellow [label="I = X00\n20ns"];
+	FarmroadYellow -> Blinking [label="I = X00\n20 ns"];
+	FarmroadGreen -> FarmroadYellow [label="I = 000\n40 ns"];
+	FarmroadGreen -> FarmroadYellow [label="I = 010\n20 ns"];
+	FarmroadYellow -> HighwayGreen [label="I = 000\n40 ns"];
+	FarmroadYellow -> HighwayGreen [label="I = 010\n20 ns"];
+	FarmroadYellow [label="Farmroad Yellow\nR = 0 1\nY = 1 0\nG = 0 0"];
+	FarmroadGreen [label="Farmroad Green\nR = 0 1\nY = 0 0\nG = 1 0"];
+	HighwayGreen [label="Highway Green\nR = 1 0\nY = 0 0\nG = 0 1"];
+	HighwayYellow [label="Highway Yellow\nR = 1 0\nY = 0 1\nG = 0 0"];
+	Blinking [label="Blinking\nR = 0 0\nY = 0 0\nG = 0 0"];
 }
