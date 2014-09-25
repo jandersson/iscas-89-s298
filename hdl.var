@@ -1,0 +1,5 @@
+#Define the work library
+DEFINE WORK work
+#Define valid Verilog file extensions
+DEFINE VERILOG_SUFFIX(.v, .vr, .vb, .vg)
+

@@ -1,0 +1,2 @@
+SOFTINCLUDE /cadence/IC616/share/cdssetup/cds.lib
+DEFINE work ./work

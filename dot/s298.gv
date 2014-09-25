@@ -1,11 +1,11 @@
 digraph s298 {
-	HighwayGreen -> HighwayYellow [label="I=000\n140ns"];
-	HighwayGreen -> HighwayYellow [label="I = 010\n120 ns"];
+	HighwayGreen -> HighwayYellow [label="Normal Op\n280ns"];
+	HighwayGreen -> HighwayYellow [label="Fast Op\n120 ns"];
 	HighwayYellow -> FarmroadGreen [label="I=000\n40ns"];
 	HighwayYellow -> FarmroadGreen [label="I=010\n60ns"];
 	HighwayYellow -> Blinking [label="I=100\n40ns"];
-	Blinking -> FarmroadYellow [label="I = X00\n20ns"];
-	FarmroadYellow -> Blinking [label="I = X00\n20 ns"];
+	Blinking -> FarmroadYellow [label="I = 100\n20ns"];
+	FarmroadYellow -> Blinking [label="I = 100\n20 ns"];
 	FarmroadGreen -> FarmroadYellow [label="I = 000\n40 ns"];
 	FarmroadGreen -> FarmroadYellow [label="I = 010\n20 ns"];
 	FarmroadYellow -> HighwayGreen [label="I = 000\n40 ns"];
