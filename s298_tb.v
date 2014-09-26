@@ -49,6 +49,8 @@ module s298_tb;
 		//680 ns passes for one complete normal cycle
 		#1060 I = 3'b010;
 		#20 I = 3'b000;
+		#1100 I = 3'b100;
+		#20 I = 3'b000;
 		$stop;
 		
 	end
