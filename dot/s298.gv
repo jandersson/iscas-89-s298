@@ -1,18 +1,44 @@
 digraph s298 {
-	HighwayGreen -> HighwayYellow [label="Normal Op\n280ns"];
-	HighwayGreen -> HighwayYellow [label="Fast Op\n120 ns"];
-	HighwayYellow -> FarmroadGreen [label="40ns"];
-	HighwayYellow -> FarmroadGreen [label="I=010\n60ns"];
-	HighwayYellow -> Blinking [label="I=100 OR\n Blink Op\n40ns"];
-	Blinking -> FarmroadYellow [label="Blink Op\n20ns"];
-	FarmroadYellow -> Blinking [label="Blink Op\n20 ns"];
-	FarmroadGreen -> FarmroadYellow [label="Normal Op\n40 ns"];
-	FarmroadGreen -> FarmroadYellow [label="Fast Op\n20 ns"];
-	FarmroadYellow -> HighwayGreen [label="Normal Op\n40 ns"];
-	FarmroadYellow -> HighwayGreen [label="Fast Op\n20 ns"];
-	FarmroadYellow [label="Farmroad Yellow\nR = 0 1\nY = 1 0\nG = 0 0"];
-	FarmroadGreen [label="Farmroad Green\nR = 0 1\nY = 0 0\nG = 1 0"];
-	HighwayGreen [label="Highway Green\nR = 1 0\nY = 0 0\nG = 0 1"];
-	HighwayYellow [label="Highway Yellow\nR = 1 0\nY = 0 1\nG = 0 0"];
+	rank="max";
+	MainroadGreen -> MainroadYellow [label="Normal Op\n14 cycles"];
+	MainroadGreen -> MainroadYellow [label="Fast Op\n6 cycles"];
+	MainroadYellow -> SideroadGreen [label="2 cycles"];
+	MainroadYellow -> SideroadGreen [label="I=010\n3 cycles"];
+	MainroadYellow -> Blinking [label="I=100 OR\n Blink Op\n2 cycles"];
+	Blinking -> SideroadYellow [label="Blink Op\n1 cycle"];
+	SideroadYellow -> Blinking [label="Blink Op\n1 cycle"];
+	SideroadGreen -> SideroadYellow [label="Normal Op\n2 cycles"];
+	SideroadGreen -> SideroadYellow [label="Fast Op\n1 cycle"];
+	SideroadYellow -> MainroadGreen [label="Normal Op\n2 cycles"];
+	SideroadYellow -> MainroadGreen [label="Fast Op\n1 cycle"];
+	SideroadYellow [label="Sideroad Yellow\nR = 0 1\nY = 1 0\nG = 0 0"];
+	SideroadGreen [label="Sideroad Green\nR = 0 1\nY = 0 0\nG = 1 0"];
+	MainroadGreen [label="Mainroad Green\nR = 1 0\nY = 0 0\nG = 0 1"];
+	MainroadYellow [label="Mainroad Yellow\nR = 1 0\nY = 0 1\nG = 0 0"];
 	Blinking [label="Blinking\nR = 0 0\nY = 0 0\nG = 0 0"];
+	Blinking -> Legend [style=invis];
+
+	subgraph cluster_0{
+		rank="sink";
+		mindist = 0;
+		ranksep = 0.5;
+		nodesep = 0.5;
+		label = "Legend";
+		node[shape=box,margin"0,0",width=1, height=0.5];
+		edge [style=invis];
+		Legend[style=invisible width=2 height=0];
+		Legend -> I0;
+		Legend -> "Pulse to reset and activate normal mode";
+		I0 -> I1;
+		"Pulse to reset and activate normal mode" -> "Pulse to activate fast mode";
+		I1 -> I2;
+		"Pulse to activate fast mode" -> "Pulse to activate blink mode";
+
+		edge [constraint = false];
+		I0 -> "Pulse to reset and activate normal mode";
+		I1 -> "Pulse to activate fast mode";
+		I2 -> "Pulse to activate blink mode";
+	}
+
 }
+
